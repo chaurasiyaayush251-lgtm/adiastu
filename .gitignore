@@ -1,35 +1,583 @@
-# Gradle files
-.gradle/
-build/
-.kotlin/
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>adiastu__!! - Free Fire Updates & One-Tap Sensitivity Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Rajdhani:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #ff4655;
+            --secondary: #ffaa00;
+            --bg-dark: #0a0c10;
+            --card-bg: rgba(22, 27, 34, 0.85);
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+            --accent-glow: rgba(255, 70, 85, 0.4);
+            --border: #30363d;
+        }
 
-# Local configuration file (sdk path, etc)
-local.properties
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-# Log/OS Files
-*.log
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(255, 70, 85, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(255, 170, 0, 0.1) 0%, transparent 40%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
 
-# Android Studio generated files and folders
-captures/
-.externalNativeBuild/
-.cxx/
-*.aab
-*.apk
-output-metadata.json
+        /* Header */
+        header {
+            background: rgba(10, 12, 16, 0.95);
+            border-bottom: 2px solid var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
 
-# IntelliJ
-*.iml
-.idea/
-misc.xml
-deploymentTargetDropDown.xml
-render.experimental.xml
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-# Keystore files
-*.jks
-*.keystore
+        .logo {
+            font-family: 'Teko', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
 
-# Google Services (e.g. APIs or Firebase)
-google-services.json
+        .logo span {
+            color: var(--primary);
+        }
 
-# Android Profiling
-*.hprof
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+            text-shadow: 0 0 8px rgba(255, 170, 0, 0.5);
+        }
+
+        /* Hero Banner */
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 3rem;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Container Section */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Teko', sans-serif;
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        /* Search Section */
+        .search-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            backdrop-filter: blur(8px);
+        }
+
+        .search-input-group {
+            position: relative;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input-group i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        .search-input-group input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3.2rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .search-input-group input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        /* Device Result Grid */
+        .device-card {
+            display: none;
+            background: var(--card-bg);
+            border: 1px solid var(--primary);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 1.5rem;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .device-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .device-name {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 2rem;
+            color: #fff;
+        }
+
+        .badge {
+            background: var(--primary);
+            color: #fff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .spec-item {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 3px solid var(--secondary);
+        }
+
+        .spec-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .spec-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-top: 0.2rem;
+        }
+
+        /* Sensitivity Meter Section */
+        .sensi-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .sensi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .sensi-box {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .sensi-box-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            border-radius: 5px;
+            width: 0%;
+            transition: width 1s ease-in-out;
+        }
+
+        /* FF Update Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .news-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-50px);
+            transform: translateY(-5px);
+            border-color: var(--secondary);
+            box-shadow: 0 5px 20px rgba(255, 170, 0, 0.2);
+        }
+
+        .news-tag {
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .news-title {
+            font-size: 1.3rem;
+            margin: 0.5rem 0;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+        }
+
+        .news-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Advance Settings Section */
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .setting-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .setting-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+        }
+
+        .setting-card h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: #fff;
+        }
+
+        .setting-list {
+            list-style: none;
+        }
+
+        .setting-list li {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed rgba(255,255,255,0.1);
+            padding-bottom: 0.3rem;
+        }
+
+        .setting-list li span {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(10, 12, 16, 0.95);
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsive UI */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .search-input-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">adiastu<span>__!!</span></div>
+            <ul class="nav-links">
+                <li><a href="#search"><i class="fa-solid fa-crosshairs"></i> Sensitivity</a></li>
+                <li><a href="#updates"><i class="fa-solid fa-bolt"></i> FF Updates</a></li>
+                <li><a href="#settings"><i class="fa-solid fa-sliders"></i> Pro Settings</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Best Free Fire One-Tap Sensitivity & Device Specs</h1>
+        <p>Apne Phone Ka Name Search Karo Aur Paayein Perfectly Calibrated One-Tap Sensitivity, AnTuTu Benchmark, Gaming FPS Aur Advance Headshot Settings!</p>
+    </section>
+
+    <!-- Main Content Container -->
+    <div class="container">
+
+        <!-- Device Search Section -->
+        <section id="search" class="search-box">
+            <div class="section-title">
+                <i class="fa-solid fa-mobile-screen-button"></i> Device Sensitivity & Spec Finder
+            </div>
+            
+            <div class="search-input-group">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="deviceInput" placeholder="Apne phone ka naam likho (e.g. Poco X3, iPhone 13, Realme GT, Redmi Note 10)..." onkeyup="searchDevice()">
+            </div>
+
+            <!-- Result Card -->
+            <div id="deviceResult" class="device-card">
+                <div class="device-header">
+                    <div>
+                        <div class="device-name" id="resName">Poco X3 Pro</div>
+                        <div style="font-size:0.85rem; color:var(--text-muted);" id="resProcessor">Snapdragon 860</div>
+                    </div>
+                    <span class="badge" id="resTier">FLAGSHIP KILLER</span>
+                </div>
+
+                <!-- Hardware Specs -->
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <div class="spec-label"><i class="fa-solid fa-microchip"></i> AnTuTu Score</div>
+                        <div class="spec-value" id="resAntutu">600,000+</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label"><i class="fa-solid fa-gamepad"></i> Max FF FPS</div>
+                        <div class="spec-value" id="resFps">90 FPS (Ultra)</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label"><i class="fa-solid fa-battery-full"></i> Battery / Charging</div>
+                        <div class="spec-value" id="resBattery">5160 mAh / 33W</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label"><i class="fa-solid fa-circle-dot"></i> Rec. DPI</div>
+                        <div class="spec-value" id="resDpi">420 DPI</div>
+                    </div>
+                </div>
+
+                <!-- Sensitivity Meter -->
+                <div class="sensi-title"><i class="fa-solid fa-bullseye"></i> Recommended One-Tap Sensitivity Settings</div>
+                <div class="sensi-grid">
+                    <div class="sensi-box">
+                        <div class="sensi-box-header">
+                            <span>General</span>
+                            <span id="valGeneral">98</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" id="barGeneral" style="width: 98%;"></div></div>
+                    </div>
+
+                    <div class="sensi-box">
+                        <div class="sensi-box-header">
+                            <span>Red Dot</span>
+                            <span id="valReddot">95</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" id="barReddot" style="width: 95%;"></div></div>
+                    </div>
+
+                    <div class="sensi-box">
+                        <div class="sensi-box-header">
+                            <span>2X Scope</span>
+                            <span id="val2x">90</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" id="bar2x" style="width: 90%;"></div></div>
+                    </div>
+
+                    <div class="sensi-box">
+                        <div class="sensi-box-header">
+                            <span>4X Scope</span>
+                            <span id="val4x">88</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" id="bar4x" style="width: 88%;"></div></div>
+                    </div>
+
+                    <div class="sensi-box">
+                        <div class="sensi-box-header">
+                            <span>Sniper Scope</span>
+                            <span id="valSniper">60</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" id="barSniper" style="width: 60%;"></div></div>
+                    </div>
+
+                    <div class="sensi-box">
+                        <div class="sensi-box-header">
+                            <span>Free Look</span>
+                            <span id="valFreeLook">75</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" id="barFreeLook" style="width: 75%;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FF Updates Section -->
+        <section id="updates">
+            <div class="section-title">
+                <i class="fa-solid fa-fire"></i> Latest Free Fire Patch Updates
+            </div>
+            <div class="news-grid">
+                <div class="news-card">
+                    <span class="news-tag">OB Patch Update</span>
+                    <h3 class="news-title">New Character Ability & Buffs</h3>
+                    <p class="news-desc">Is naye patch me Sonia aur Orion ki skill duration ko adjust kiya gaya hai. Alok speed duration +10% fast ho gayi hai.</p>
+                </div>
+                <div class="news-card">
+                    <span class="news-tag">Weapon Balance</span>
+                    <h3 class="news-title">Shotgun & SMG Adjustments</h3>
+                    <p class="news-desc">M1887 ki rate of fire thodi kam ki gayi hai aur MP40 ka headshot multiplier +5% badhaya gaya hai short-range combat ke liye.</p>
+                </div>
+                <div class="news-card">
+                    <span class="news-tag">BR System</span>
+                    <h3 class="news-title">New Air Drop Weapons</h3>
+                    <p class="news-desc">BR Ranked mode me ab Naye Cyber Drops aayenge jisme Level 4 Armor aur Special Attachment Snipers milenge.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pro Advance Settings Section -->
+        <section id="settings">
+            <div class="section-title">
+                <i class="fa-solid fa-gear"></i> Advance Headshot & Game Settings
+            </div>
+            <div class="settings-grid">
+                
+                <div class="setting-card">
+                    <h3><i class="fa-solid fa-hand-pointer"></i> Custom HUD Tricks</h3>
+                    <ul class="setting-list">
+                        <li>Fire Button Size: <span>42% - 48%</span></li>
+                        <li>Fire Button Position: <span>Niche Bottom Right</span></li>
+                        <li>Quick Weapon Switch: <span>ON (Fast Drag)</span></li>
+                        <li>Left Fire Button: <span>Always ON</span></li>
+                    </ul>
+                </div>
+
+                <div class="setting-card">
+                    <h3><i class="fa-solid fa-sliders"></i> Display & Performance</h3>
+                    <ul class="setting-list">
+                        <li>Graphics: <span>Smooth (High FPS)</span></li>
+                        <li>High FPS: <span>High / Normal</span></li>
+                        <li>Shadow: <span>OFF (No Lag)</span></li>
+                        <li>Auto-Scale: <span>OFF</span></li>
+                    </ul>
+                </div>
+
+                <div class="setting-card">
+                    <h3><i class="fa-solid fa-wand-magic-sparkles"></i> One-Tap Drag Technique</h3>
+                    <ul class="setting-l
